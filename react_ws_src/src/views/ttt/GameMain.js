@@ -4,26 +4,16 @@ import io from 'socket.io-client'
 
 import TweenMax from 'gsap'
 
-import rand_arr_elem from '../../helpers/rand_arr_elem'
+import smart_move from '../../helpers/smart_move'
 import rand_to_fro from '../../helpers/rand_to_fro'
+import win_sets from '../../helpers/win_sets'
 
 export default class SetName extends Component {
 
 	constructor (props) {
 		super(props)
 
-		this.win_sets = [
-			['c1', 'c2', 'c3'],
-			['c4', 'c5', 'c6'],
-			['c7', 'c8', 'c9'],
-
-			['c1', 'c4', 'c7'],
-			['c2', 'c5', 'c8'],
-			['c3', 'c6', 'c9'],
-
-			['c1', 'c5', 'c9'],
-			['c3', 'c5', 'c7']
-		]
+		this.win_sets = win_sets
 
 
 		if (this.props.game_type != 'live')
@@ -194,14 +184,7 @@ export default class SetName extends Component {
 	turn_comp () {
 
 		let { cell_vals } = this.state
-		let empty_cells_arr = []
-
-
-		for (let i=1; i<=9; i++) 
-			!cell_vals['c'+i] && empty_cells_arr.push('c'+i)
-		// console.log(cell_vals, empty_cells_arr, rand_arr_elem(empty_cells_arr))
-
-		const c = rand_arr_elem(empty_cells_arr)
+    const c = smart_move(cell_vals)
 		cell_vals[c] = 'o'
 
 		TweenMax.from(this.refs[c], 0.7, {opacity: 0, scaleX:0, scaleY:0, ease: Power4.easeOut})
