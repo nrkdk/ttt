@@ -8,7 +8,7 @@ export default class Main extends Component {
 	render () {
 		const { popup, mainContent } = this.props
 		return (
-			<div style={fullHeight}>
+			<div>
 				<Header/>
 				<MainContent>
 					{ mainContent }
@@ -27,7 +27,3 @@ Main.propTypes = {
 	popup: React.PropTypes.object
 }
 
-// full height
-const fullHeight = {
-	height: '100%'
-}

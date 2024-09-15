@@ -17,14 +17,15 @@ export default class Header extends Component {
 				<div id='brand'>
 					<div className='container'>
 
+          <div className='brand'>
 						<Link to={app.settings.ws_conf.header.head_l_logo.u} className='logo-tl'>
 							<img src={app.settings.ws_conf.header.head_l_logo.i} />
 						</Link>
 
-
 						<Link to={app.settings.ws_conf.header.site_title.u} className='main-site-name'>
 							{app.settings.ws_conf.header.site_title.txt}
 						</Link>
+          </div>
 
 						<nav>
 							<ul>
@@ -32,7 +33,7 @@ export default class Header extends Component {
 									app.settings.ws_conf.main_menu.pages.p.map(function (p, i) {
 										return (
 											<li key={i}>
-												<Link 	to={p.u} >
+												<Link 	to={p.u} className='nav-item'>
 													<i className={'fa fa-2x '+p.ico} aria-hidden="true"></i>
 													{p.name}
 												</Link>
