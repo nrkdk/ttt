@@ -12,19 +12,19 @@ export default class SetName extends Component {
 
 	render () {
 		return (
-			<div id='SetName'>
+			<form id='SetName' onSubmit={this.saveName.bind(this)}>
 
 				<h1>Set Name</h1>
 
-				<div ref='nameHolder' className='input_holder left'>
-					<label>Name </label>
-					<input ref='name' type='text' className='input name' placeholder='Name' />
-				</div>
+				<fieldset ref='nameHolder' className='input_holder left'>
+					<label htmlFor='name'>Name</label>
+					<input id='name' ref='name' type='text' className='input name' placeholder='Enter name' />
+				</fieldset>
 
 
 				<button type='submit' onClick={this.saveName.bind(this)} className='button'><span>SAVE <span className='fa fa-caret-right'></span></span></button>
 
-			</div>
+			</form>
 		)
 	}
 
@@ -35,6 +35,7 @@ export default class SetName extends Component {
 		// const { onSetName } = this.props
 		// onSetName(name.value.trim())
 
+    e.preventDefault()
 		this.props.onSetName(this.refs.name.value.trim())
 	}
 
